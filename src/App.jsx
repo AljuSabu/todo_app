@@ -1,22 +1,67 @@
+import { useEffect, useState } from "react"
+import Todo_form from "./components/Todo_form"
+import Cards from "./components/Cards"
 
 function App() {
   
+  const[time,setTime]=useState(new Date())
+    const[todoList,setTodoList] = useState([
+    {id:1 ,task:'car wash'},
+    {id:2 ,task:'complete Project'},
+    {id:3 ,task:'have lunch'}
+  ])
+  const[newTask,setnewTask]=useState("")
+
+  //Time Setting
+  useEffect(()=>{
+      const timer = setInterval(()=>{
+      setTime(new Date())
+    },1000)
+    return ()=>{clearInterval(timer)}
+  },[])
+  const formattedTime = time.toLocaleTimeString()
+
+  //Add Task
+  const addTask = (e)=>{
+    e.preventDefault()
+    if(!newTask){
+      alert('Enter a Task')
+      return  
+    }
+    let num = todoList.length === 0 ? 1 : todoList.length + 1
+    let newEntry = {id:num, task:newTask}
+    setTodoList([...todoList, newEntry])
+    setnewTask("")
+  }
+
+  //Delete Task
+  const deleteTask =(taskId)=>{
+    const newTodoList = todoList.filter((item)=>{
+      return item.id != taskId
+    })
+    setTodoList(newTodoList)
+  }
 
   return (
-    
     <>
-    <div className="bg-linear-to-r from-fuchsia-500 to-blue-500 relative h-120 flex justify-center items-center">
-      <img src="/background.jpg" alt="img" className="h-120 w-full absolute mix-blend-overlay" />
-      <div className="h-180 w-180 relative top-50 p-2">
-        <div className="flex justify-between p-1">
+    <div className="h-screen flex justify-center items-center bg-[url(public/background.jpg)] bg-cover bg-center">
+      <div className="h-210 w-180 relative top-10 p-2">
+        <div className="flex justify-between px-2">
           <h1 className="text-6xl font-bold text-white">TODO</h1>
-          <div className="text-6xl font-orbitron">00:00:00</div>
+          <div className="text-4xl mt-3 font-orbitron">{formattedTime}</div>
         </div>
-        <form className="flex justify-between mt-15">
-          <input type="text" className="shadow-md shadow-black pl-5 w-140 h-15 text-xl text-gray-500 bg-stone-50 rounded-xl focus:outline-none" placeholder="Enter your Task" />
-          <button type="submit" className="bg-purple-600 text-2xl py-3 px-5 rounded-xl shadow-md shadow-black hover:bg-purple-500 hover:shadow-lg text-white">Enter  </button>
-        </form>
-        <div className="w-full bg-stone-50 h-full rounded-xl shadow-md shadow-black mt-10"></div>
+        <Todo_form handleSubmit={addTask} value={newTask} setValue={setnewTask} />
+        <div className="flex overflow-auto scrollbar-gutter-stable flex-col gap-5 p-5 pl-10 w-full h-150 rounded-xl bg-transparent shadow-md shadow-black mt-10">
+          {
+            todoList.map((item,index)=>{
+              return(
+                <div key={item.id}>
+                  <Cards item={item} index={index} deleteTask={deleteTask} />
+                </div>
+              )
+            })
+          }
+        </div>
       </div>
     </div>
     </>
