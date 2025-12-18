@@ -59,7 +59,7 @@ function App() {
   const isComplete = (id)=>{
     setTodoList(todoList.map((item)=>{
       if(item.id===id){
-        return {...item,status:true}
+        return {...item,status:!item.status}
       }else{
         return item
       }
@@ -84,16 +84,16 @@ function App() {
     <>
     <div className="min-h-screen relative w-full flex justify-center items-start bg-[url(public/background.jpg)] bg-cover bg-center">
     <div class="absolute inset-0 bg-black/20"></div>
-      <div className="border relative z-10 min-h-100 xl:w-135 2xl:w-180 xl:mt-20 2xl:mt-10 mb-10 p-2">
+      <div className="border relative z-10 min-h-100 lg:w-100 xl:w-135 2xl:w-180 mt-10 mb-10 p-2">
         <div className="border flex justify-between px-2">
-          <h1 className="border xl:text-4xl 2xl:text-6xl font-bold text-white">TODO</h1>
-          <div className="border xl:text-3xl 2xl:text-4xl xl:mt-2 2xl:mt-3 font-orbitron">{formattedTime}</div>
+          <h1 className="border lg:text-2xl xl:text-4xl 2xl:text-6xl font-bold text-white">TODO</h1>
+          <div className="border lg:text-xl xl:text-3xl 2xl:text-4xl lg:mt-1 xl:mt-2 2xl:mt-3 font-orbitron">{formattedTime}</div>
         </div>
         <Todo_form handleSubmit={addTask} value={newTask} setValue={setnewTask} />
         {todoList.length===0 ? (
           ''
         ):(
-        <div className="border flex overflow-auto scrollbar-gutter-stable flex-col gap-5 p-5 xl:pl-5 2xl:px-10 w-full xl:max-h-100 2xl:max-h-150 rounded-xl bg-transparent shadow-md shadow-black xl:mt-10">
+        <div className="border flex overflow-auto scrollbar-gutter-stable flex-col gap-5 p-5 xl:px-7 2xl:px-10 w-full lg:max-h-70 xl:max-h-100 2xl:max-h-150 rounded-xl bg-transparent shadow-md shadow-black lg:mt-8 xl:mt-10">
           {
             todoList.map((item,index)=>{
               return item.isEditting ? (
