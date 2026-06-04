@@ -83,17 +83,17 @@ function App() {
   return (
     <>
     <div className="min-h-screen relative w-full flex justify-center items-start bg-[url(public/background.jpg)] bg-cover bg-center">
-    <div class="absolute inset-0 bg-black/20"></div>
-      <div className="border relative z-10 min-h-100 lg:w-100 xl:w-135 2xl:w-180 mt-10 mb-10 p-2">
-        <div className="border flex justify-between px-2">
-          <h1 className="border lg:text-2xl xl:text-4xl 2xl:text-6xl font-bold text-white">TODO</h1>
-          <div className="border lg:text-xl xl:text-3xl 2xl:text-4xl lg:mt-1 xl:mt-2 2xl:mt-3 font-orbitron">{formattedTime}</div>
+    <div className="absolute inset-0 bg-black/20"></div>
+      <div className="relative z-10 min-h-70 md:min-h-100 w-70 md:w-100 xl:w-135 2xl:w-180 mt-10 md:mt-20 lg:mt-10 mb-10 p-2">
+        <div className="flex justify-between px-2">
+          <h1 className="text-2xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-white">TODO</h1>
+          <div className="text-base md:text-2xl lg:text-xl xl:text-3xl 2xl:text-4xl mt-2 md:mt-3 lg:mt-2 2xl:mt-3 font-orbitron">{formattedTime}</div>
         </div>
         <Todo_form handleSubmit={addTask} value={newTask} setValue={setnewTask} />
         {todoList.length===0 ? (
           ''
         ):(
-        <div className="border flex overflow-auto scrollbar-gutter-stable flex-col gap-5 p-5 xl:px-7 2xl:px-10 w-full lg:max-h-70 xl:max-h-100 2xl:max-h-150 rounded-xl bg-transparent shadow-md shadow-black lg:mt-8 xl:mt-10">
+        <div className="flex overflow-auto scrollbar-gutter-stable flex-col gap-5 p-4 md:p-5 md:px-7 2xl:px-10 w-full max-h-90 md:max-h-140 lg:max-h-80 xl:max-h-100 2xl:max-h-140 rounded-md xl:rounded-xl bg-transparent shadow-md shadow-black mt-8 xl:mt-10">
           {
             todoList.map((item,index)=>{
               return item.isEditting ? (
