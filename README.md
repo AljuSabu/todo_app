@@ -6,7 +6,7 @@ A modern and responsive Todo Application built with React and Vite. This project
 
 # 🚀 Live Demo
 
-🔗 **Live Website:** 
+🔗 **Live Website:** [live@](https://al-todo.netlify.app/)
 
 ---
 
@@ -27,12 +27,6 @@ A modern and responsive Todo Application built with React and Vite. This project
 ## Mobile Screen
 
 ![Mobile Screen](./src/images/sm.png)
-
----
-
-## ✅ Completed Tasks
-
-![Completed Tasks](./public/completed-task.png)
 
 ---
 
