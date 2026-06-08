@@ -82,7 +82,7 @@ function App() {
 
   return (
     <>
-    <div className="min-h-screen relative w-full flex justify-center items-start bg-[url(public/background.jpg)] bg-cover bg-center">
+    <div className="min-h-screen relative w-full flex justify-center items-start bg-[url(/background.jpg)] bg-cover bg-center">
     <div className="absolute inset-0 bg-black/20"></div>
       <div className="relative z-10 min-h-70 md:min-h-100 w-70 md:w-100 xl:w-135 2xl:w-180 mt-10 md:mt-20 lg:mt-10 mb-10 p-2">
         <div className="flex justify-between px-2">
